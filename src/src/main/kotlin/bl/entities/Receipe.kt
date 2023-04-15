@@ -8,7 +8,7 @@ data class Recipe(
     var description: String,
     var date: LocalDateTime,
     var comments: List<Comment>,
-    var owner: User,
+    var owner: Manufacturer,
     var ingredients: List<Ingredient>
 )
 

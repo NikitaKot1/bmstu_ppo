@@ -3,20 +3,20 @@ package bl.repository
 import bl.entities.*
 import java.time.LocalDateTime
 
-var ManufacturerMockData: Array<User> = arrayOf(
-    User(0u, "login0", "password0"),
-    User(1u, "login1", "password1"),
-    User(2u, "login2", "password2"),
-    User(3u, "login3", "password3"),
-    User(4u, "login4", "password4")
+var ManufacturerMockData: Array<Manufacturer> = arrayOf(
+    Manufacturer(0u, "login0", "password0"),
+    Manufacturer(1u, "login1", "password1"),
+    Manufacturer(2u, "login2", "password2"),
+    Manufacturer(3u, "login3", "password3"),
+    Manufacturer(4u, "login4", "password4")
 )
 
-var ConsumerMockData: Array<User> = arrayOf(
-    User(0u, "login0", "password0"),
-    User(1u, "login1", "password1"),
-    User(2u, "login2", "password2"),
-    User(3u, "login3", "password3"),
-    User(4u, "login4", "password4")
+var ConsumerMockData: Array<Consumer> = arrayOf(
+    Consumer(0u, "login0", "password0"),
+    Consumer(1u, "login1", "password1"),
+    Consumer(2u, "login2", "password2"),
+    Consumer(3u, "login3", "password3"),
+    Consumer(4u, "login4", "password4")
 )
 
 var CommentMockData: Array<Comment> = arrayOf(

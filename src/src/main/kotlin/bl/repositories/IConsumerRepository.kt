@@ -1,10 +1,10 @@
 package bl.repositories
 
+import bl.entities.Consumer
 import bl.entities.RecipePreview
-import bl.entities.User
 
-interface IConsumerRepository : IRepository<User> {
+interface IConsumerRepository : IRepository<Consumer> {
     fun isLoginNotExist(login: String): Boolean
-    fun getByLogin(login: String): User?
+    fun getByLogin(login: String): Consumer?
     fun getSavedMarks(userID: ULong): List<RecipePreview>
 }

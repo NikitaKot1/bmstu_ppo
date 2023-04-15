@@ -68,10 +68,10 @@ object RecipeManager : ICRUDManager<Recipe> {
     }
 
     fun addComment(userID: ULong, text: String, recipeID: ULong) {
-        if (!ManufacturerManager.isExist(userID)) throw NotExistingUserException("User not exists")
+        if (!ConsumerManager.isExist(userID)) throw NotExistingUserException("User not exists")
         if (!isExist(recipeID)) throw NotExistingRecipeException("Recipe not exists")
 
-        val owner = ManufacturerManager.read(userID)
+        val owner = ConsumerManager.read(userID)
         var comment = Comment(0u, LocalDateTime.now(), text, owner)
 
         repository.addComment(userID, recipeID, comment)

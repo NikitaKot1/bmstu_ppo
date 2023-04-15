@@ -1,31 +1,28 @@
 package da.dao
 
-import bl.entities.User
+import bl.entities.Consumer
 import org.jetbrains.exposed.dao.IntEntity
 import org.jetbrains.exposed.dao.IntEntityClass
 import org.jetbrains.exposed.dao.id.EntityID
 import org.jetbrains.exposed.dao.id.IntIdTable
 
-object Users : IntIdTable("user") {
+object Consumers : IntIdTable("user") {
     val login = text("login")
     val password = text("password")
-    val isAdmin = bool("is_admin").default(false)
 }
 
-class UserTable(id: EntityID<Int>) : IntEntity(id) {
-    companion object : IntEntityClass<UserTable>(Users)
+class ConsumerTable(id: EntityID<Int>) : IntEntity(id) {
+    companion object : IntEntityClass<ConsumerTable>(Consumers)
 
-    var login by Users.login
-    var password by Users.password
-    var isAdmin by Users.isAdmin
+    var login by Consumers.login
+    var password by Consumers.password
 
-    val recipes by RecipeTable referrersOn Recipes.owner
     val comments by CommentTable referrersOn Comments.autor
 
     var savedRecipes by RecipeTable via SavedRecipes
 }
 
-fun UserTable.toEntity(): User = User(
+fun ConsumerTable.toEntity(): Consumer = Consumer(
     id = this.id.value.toULong(),
     login = this.login,
     password = this.password

@@ -1,10 +1,10 @@
 package bl.repositories
 
+import bl.entities.Manufacturer
 import bl.entities.RecipePreview
-import bl.entities.User
 
-interface IManufacturerRepository : IRepository<User> {
+interface IManufacturerRepository : IRepository<Manufacturer> {
     fun isLoginNotExist(login: String): Boolean
-    fun getByLogin(login: String): User?
+    fun getByLogin(login: String): Manufacturer?
     fun getMarks(userID: ULong): List<RecipePreview>
 }

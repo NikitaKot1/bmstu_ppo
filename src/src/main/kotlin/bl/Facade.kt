@@ -65,11 +65,11 @@ class Facade(private var repositoryFactory: IRepositoryFactory) {
     fun isOwner(userID: ULong, recipeID: ULong): Boolean = RecipeManager.isOwner(userID, recipeID)
 
     //User
-    fun createManufacturer(obj: User) {
+    fun createManufacturer(obj: Manufacturer) {
         ManufacturerManager.create(obj)
     }
 
-    fun createConsumer(obj: User) {
+    fun createConsumer(obj: Consumer) {
         ConsumerManager.create(obj)
     }
 
@@ -77,11 +77,11 @@ class Facade(private var repositoryFactory: IRepositoryFactory) {
     fun getConsumer(id: ULong) = ConsumerManager.read(id)
 
 
-    fun updateConsumer(obj: User) {
+    fun updateConsumer(obj: Consumer) {
         ConsumerManager.update(obj)
     }
 
-    fun updateManufacturer(obj: User) {
+    fun updateManufacturer(obj: Manufacturer) {
         ManufacturerManager.update(obj)
     }
 
@@ -93,7 +93,7 @@ class Facade(private var repositoryFactory: IRepositoryFactory) {
         ConsumerManager.delete(id)
     }
 
-    fun getAllManufacturer(): List<User> = ManufacturerManager.getAll()
+    fun getAllManufacturer(): List<Manufacturer> = ManufacturerManager.getAll()
 
 
     //Account
@@ -105,8 +105,9 @@ class Facade(private var repositoryFactory: IRepositoryFactory) {
         AccountService.registerConsumer(login, password)
     }
 
-    fun logInConsumer(login: String, password: String): User = AccountService.logINConsumer(login, password)
-    fun logInManufacturer(login: String, password: String): User = AccountService.logINManufacturer(login, password)
+    fun logInConsumer(login: String, password: String): Consumer = AccountService.logINConsumer(login, password)
+    fun logInManufacturer(login: String, password: String): Manufacturer =
+        AccountService.logINManufacturer(login, password)
 
 
     //Search

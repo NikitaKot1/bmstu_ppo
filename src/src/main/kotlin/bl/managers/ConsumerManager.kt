@@ -1,33 +1,33 @@
 package bl.managers
 
+import bl.entities.Consumer
 import bl.entities.RecipePreview
-import bl.entities.User
 import bl.exceptions.AlreadyExistingUserException
 import bl.exceptions.NotExistingUserException
 import bl.repositories.IConsumerRepository
 import bl.repositories.IRepository
 
-object ConsumerManager : ICRUDManager<User> {
+object ConsumerManager : ICRUDManager<Consumer> {
 
     private lateinit var repository: IConsumerRepository
 
-    override fun registerRepository(repository: IRepository<User>) {
+    override fun registerRepository(repository: IRepository<Consumer>) {
         this.repository = repository as IConsumerRepository
     }
 
-    override fun create(obj: User) {
+    override fun create(obj: Consumer) {
         if (!isUniq(obj)) throw AlreadyExistingUserException("User already exists")
 
         repository.create(obj)
     }
 
-    override fun read(id: ULong): User {
+    override fun read(id: ULong): Consumer {
         if (!isExist(id)) throw NotExistingUserException("User not exists")
 
         return repository.read(id)
     }
 
-    override fun update(obj: User) {
+    override fun update(obj: Consumer) {
         if (!isExist(obj.id)) throw NotExistingUserException("User not exists")
 
         repository.update(obj)
@@ -39,9 +39,9 @@ object ConsumerManager : ICRUDManager<User> {
         repository.delete(id)
     }
 
-    override fun getAll(): List<User> = repository.getAll()
+    override fun getAll(): List<Consumer> = repository.getAll()
 
-    override fun isUniq(obj: User) = repository.isLoginNotExist(obj.login)
+    override fun isUniq(obj: Consumer) = repository.isLoginNotExist(obj.login)
 
     override fun isExist(id: ULong): Boolean = repository.exists(id)
 

@@ -285,7 +285,7 @@ class ConsumerTest {
     @Test
     @DisplayName("Create Consumer")
     fun createConsumer() {
-        val expected = User(6u, "login6", "password6")
+        val expected = Consumer(6u, "login6", "password6")
         facade.createConsumer(expected)
         val actual = ConsumerMockData.find { it.login == "login6" }
 
@@ -295,7 +295,7 @@ class ConsumerTest {
     @Test
     @DisplayName("Create Consumer, not uniq")
     fun createConsumerNotUniq() {
-        val tmp = User(5u, "login0", "password0")
+        val tmp = Consumer(5u, "login0", "password0")
 
         assertThrows<AlreadyExistingUserException> { facade.createConsumer(tmp) }
     }
@@ -329,7 +329,7 @@ class ConsumerTest {
     @Test
     @DisplayName("Update Consumer, not exist")
     fun updateConsumerNotExist() {
-        val tmp = User(9u, "login1", "password1")
+        val tmp = Consumer(9u, "login1", "password1")
 
         assertThrows<NotExistingUserException> { facade.updateConsumer(tmp) }
     }
@@ -355,7 +355,7 @@ class ManufacturerTest {
     @Test
     @DisplayName("Create Manufacturer")
     fun createUser() {
-        val expected = User(6u, "login6", "password6")
+        val expected = Consumer(6u, "login6", "password6")
         facade.createManufacturer(expected)
         val actual = ManufacturerMockData.find { it.login == "login6" }
 
@@ -365,7 +365,7 @@ class ManufacturerTest {
     @Test
     @DisplayName("Create Manufacturer, not uniq")
     fun createUserNotUniq() {
-        val tmp = User(5u, "login0", "password0")
+        val tmp = Consumer(5u, "login0", "password0")
 
         assertThrows<AlreadyExistingUserException> { facade.createManufacturer(tmp) }
     }
@@ -399,7 +399,7 @@ class ManufacturerTest {
     @Test
     @DisplayName("Update Manufacturer, not exist")
     fun updateManufacturerNotExist() {
-        val tmp = User(9u, "login1", "password1")
+        val tmp = Consumer(9u, "login1", "password1")
 
         assertThrows<NotExistingUserException> { facade.updateManufacturer(tmp) }
     }
@@ -437,7 +437,7 @@ class ManufacturerAccountTest {
         val login = "login5"
         val password = "password5"
 
-        val expected = User(0u, login, password)
+        val expected = Consumer(0u, login, password)
         facade.registerManufacturer(login, password)
         val actual = ManufacturerMockData.find { it.login == login }
 
@@ -482,7 +482,7 @@ class ConsumerAccountTest {
         val login = "login5"
         val password = "password5"
 
-        val expected = User(0u, login, password)
+        val expected = Consumer(0u, login, password)
         facade.registerConsumer(login, password)
         val actual = ConsumerMockData.find { it.login == login }
 
