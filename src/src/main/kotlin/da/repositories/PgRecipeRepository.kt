@@ -9,7 +9,6 @@ import da.dao.*
 import da.exeption.NotFoundInDBException
 import org.jetbrains.exposed.dao.id.EntityID
 import org.jetbrains.exposed.sql.SortOrder
-import org.jetbrains.exposed.sql.select
 import org.jetbrains.exposed.sql.selectAll
 import org.jetbrains.exposed.sql.transactions.transaction
 
@@ -94,12 +93,13 @@ class PgRecipeRepository : IRecipeRepository {
         val query = Recipes.selectAll().orderBy(Recipes.date to SortOrder.DESC)
         RecipePreviewTable.wrapRows(query).map { it.toEntity() }
     }
-    
+
     override fun getSortedByLike(): List<RecipePreview> {
         TODO()
     }
 
     override fun searchByIngredient(ing: Ingredient): List<RecipePreview> = transaction {
-        val query = Recipes.select(where = )
+        //val query = Recipes.select(ex)
+        TODO()
     }
 }

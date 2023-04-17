@@ -18,5 +18,4 @@ fun main(args: Array<String>) {
     }
 
     Database.connect(HikariDataSource(hikariConfig))
-
 }

@@ -23,14 +23,14 @@ class PgManufacturerRepository : IManufacturerRepository {
 
     override fun read(id: ULong): Manufacturer = transaction {
         val obj = ManufacturerTable.findById(id.toInt())
-        obj?.toEntity() ?: throw NotFoundInDBException("User with id = $id not found")
+        obj?.toEntity() ?: throw NotFoundInDBException("Manufacturer with id = $id not found")
     }
 
     override fun update(obj: Manufacturer) {
         transaction {
             val dao =
                 ManufacturerTable.findById(obj.id.toInt())
-                    ?: throw NotFoundInDBException("User with id = ${obj.id} not found")
+                    ?: throw NotFoundInDBException("Manufacturer with id = ${obj.id} not found")
             dao.login = obj.login
             dao.password = obj.password
         }
@@ -52,9 +52,10 @@ class PgManufacturerRepository : IManufacturerRepository {
     override fun isLoginNotExist(login: String): Boolean =
         transaction { ManufacturerTable.find { Manufacturers.login eq login }.firstOrNull() } == null
 
-    override fun getByLogin(login: String): Manufacturer =
+    override fun getByLogin(login: String): Manufacturer = transaction {
         ManufacturerTable.find { Manufacturers.login eq login }.firstOrNull()?.toEntity()
             ?: throw NotFoundInDBException("Manufacturer with login = $login not found")
+    }
 
     override fun getMarks(userID: ULong): List<RecipePreview> = transaction {
         val query = Recipes.innerJoin(Manufacturers).slice(Recipes.columns).select(Manufacturers.id eq userID.toInt())

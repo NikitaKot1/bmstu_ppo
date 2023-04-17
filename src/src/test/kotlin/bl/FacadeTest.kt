@@ -355,7 +355,7 @@ class ManufacturerTest {
     @Test
     @DisplayName("Create Manufacturer")
     fun createUser() {
-        val expected = Consumer(6u, "login6", "password6")
+        val expected = Manufacturer(6u, "login6", "password6")
         facade.createManufacturer(expected)
         val actual = ManufacturerMockData.find { it.login == "login6" }
 
@@ -365,7 +365,7 @@ class ManufacturerTest {
     @Test
     @DisplayName("Create Manufacturer, not uniq")
     fun createUserNotUniq() {
-        val tmp = Consumer(5u, "login0", "password0")
+        val tmp = Manufacturer(5u, "login0", "password0")
 
         assertThrows<AlreadyExistingUserException> { facade.createManufacturer(tmp) }
     }
@@ -399,7 +399,7 @@ class ManufacturerTest {
     @Test
     @DisplayName("Update Manufacturer, not exist")
     fun updateManufacturerNotExist() {
-        val tmp = Consumer(9u, "login1", "password1")
+        val tmp = Manufacturer(9u, "login1", "password1")
 
         assertThrows<NotExistingUserException> { facade.updateManufacturer(tmp) }
     }
@@ -437,7 +437,7 @@ class ManufacturerAccountTest {
         val login = "login5"
         val password = "password5"
 
-        val expected = Consumer(0u, login, password)
+        val expected = Manufacturer(0u, login, password)
         facade.registerManufacturer(login, password)
         val actual = ManufacturerMockData.find { it.login == login }
 

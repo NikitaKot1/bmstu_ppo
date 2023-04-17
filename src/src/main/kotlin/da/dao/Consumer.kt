@@ -6,7 +6,7 @@ import org.jetbrains.exposed.dao.IntEntityClass
 import org.jetbrains.exposed.dao.id.EntityID
 import org.jetbrains.exposed.dao.id.IntIdTable
 
-object Consumers : IntIdTable("user") {
+object Consumers : IntIdTable("consumer") {
     val login = text("login")
     val password = text("password")
 }

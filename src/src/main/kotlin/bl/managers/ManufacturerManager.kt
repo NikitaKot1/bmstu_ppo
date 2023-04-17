@@ -15,25 +15,25 @@ object ManufacturerManager : ICRUDManager<Manufacturer> {
     }
 
     override fun create(obj: Manufacturer) {
-        if (!isUniq(obj)) throw AlreadyExistingUserException("User already exists")
+        if (!isUniq(obj)) throw AlreadyExistingUserException("Manufacturer already exists")
 
         repository.create(obj)
     }
 
     override fun read(id: ULong): Manufacturer {
-        if (!isExist(id)) throw NotExistingUserException("User not exists")
+        if (!isExist(id)) throw NotExistingUserException("Manufacturer not exists")
 
         return repository.read(id)
     }
 
     override fun update(obj: Manufacturer) {
-        if (!isExist(obj.id)) throw NotExistingUserException("User not exists")
+        if (!isExist(obj.id)) throw NotExistingUserException("Manufacturer not exists")
 
         repository.update(obj)
     }
 
     override fun delete(id: ULong) {
-        if (!isExist(id)) throw NotExistingUserException("User not exists")
+        if (!isExist(id)) throw NotExistingUserException("Manufacturer not exists")
 
         repository.delete(id)
     }

@@ -17,7 +17,6 @@ class PGEnum<T : Enum<T>>(enumTypeName: String, enumValue: T?) : PGobject() {
 
 object Ingredients : IntIdTable("ingredient") {
     val name = text("name")
-    val nutritionalValue = integer("nutritional_value")
     val type = customEnumeration(
         "type",
         "ing_type",
@@ -29,7 +28,6 @@ class IngredientTable(id: EntityID<Int>) : IntEntity(id) {
     companion object : IntEntityClass<IngredientTable>(Ingredients)
 
     var name by Ingredients.name
-    var nutritionalValue by Ingredients.nutritionalValue
     var type by Ingredients.type
 
     val list by IngredientListTable referrersOn IngredientLists.ingredient

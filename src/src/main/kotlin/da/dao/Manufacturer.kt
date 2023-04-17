@@ -6,16 +6,16 @@ import org.jetbrains.exposed.dao.IntEntityClass
 import org.jetbrains.exposed.dao.id.EntityID
 import org.jetbrains.exposed.dao.id.IntIdTable
 
-object Manufacturers : IntIdTable("user") {
+object Manufacturers : IntIdTable("manufacturer") {
     val login = text("login")
     val password = text("password")
 }
 
 class ManufacturerTable(id: EntityID<Int>) : IntEntity(id) {
-    companion object : IntEntityClass<ManufacturerTable>(Consumers)
+    companion object : IntEntityClass<ManufacturerTable>(Manufacturers)
 
-    var login by Consumers.login
-    var password by Consumers.password
+    var login by Manufacturers.login
+    var password by Manufacturers.password
 
     val recipes by RecipeTable referrersOn Recipes.owner
 }

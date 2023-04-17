@@ -23,6 +23,8 @@ class Facade(private var repositoryFactory: IRepositoryFactory) {
         CommentManager.delete(id)
     }
 
+    fun getComment(id: ULong) = CommentManager.read(id)
+
     //Ingredient
     fun createIngredient(obj: Ingredient) {
         IngredientManager.create(obj)
@@ -35,6 +37,8 @@ class Facade(private var repositoryFactory: IRepositoryFactory) {
     fun deleteIngredient(id: ULong) {
         IngredientManager.delete(id)
     }
+
+    fun getIngredient(id: ULong) = IngredientManager.read(id)
 
     fun findByNameIngredient(name: String) = IngredientManager.findByName(name)
 
