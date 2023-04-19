@@ -22,7 +22,9 @@ class PgConsumerRepository : IConsumerRepository {
 
     override fun read(id: ULong): Consumer = transaction {
         val obj = ConsumerTable.findById(id.toInt())
-        obj?.toEntity() ?: throw NotFoundInDBException("User with id = $id not found")
+        transaction {
+            obj?.toEntity() ?: throw NotFoundInDBException("User with id = $id not found")
+        }
     }
 
     override fun update(obj: Consumer) {
@@ -51,9 +53,10 @@ class PgConsumerRepository : IConsumerRepository {
         transaction { ConsumerTable.find { Consumers.login eq login }.firstOrNull() } == null
 
 
-    override fun getByLogin(login: String): Consumer =
+    override fun getByLogin(login: String): Consumer = transaction {
         ConsumerTable.find { Consumers.login eq login }.firstOrNull()?.toEntity()
             ?: throw NotFoundInDBException("User with login = $login not found")
+    }
 
     override fun getSavedMarks(userID: ULong): List<RecipePreview> = transaction {
         val query =

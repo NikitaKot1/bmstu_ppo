@@ -12,7 +12,7 @@ enum class IngredientType {
 }
 
 data class Ingredient(
-    val id: ULong,
+    var id: ULong,
     var name: String,
     var type: IngredientType,
     var amount: UInt

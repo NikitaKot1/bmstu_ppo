@@ -8,11 +8,9 @@ import org.jetbrains.exposed.dao.id.EntityID
 import org.jetbrains.exposed.dao.id.IntIdTable
 import org.jetbrains.exposed.sql.javatime.datetime
 
-object Recipes : IntIdTable("recipe") {
+object Recipes : IntIdTable("mark") {
     val name = text("name")
     val description = text("description")
-    val time = integer("time").check { it.greaterEq(0) }
-    val servingsNum = integer("servings_num").autoIncrement()
     val date = datetime("date")
     val owner = reference("ownerid", Manufacturers)
 }
@@ -22,7 +20,6 @@ class RecipeTable(id: EntityID<Int>) : IntEntity(id) {
 
     var name by Recipes.name
     var description by Recipes.description
-    var time by Recipes.time
     var date by Recipes.date
 
     var ownerId by Recipes.owner
@@ -38,8 +35,6 @@ class RecipePreviewTable(id: EntityID<Int>) : IntEntity(id) {
 
     var name by Recipes.name
     var description by Recipes.description
-    var time by Recipes.time
-    var servingsNum by Recipes.servingsNum
 }
 
 fun RecipeTable.toEntity(): Recipe = Recipe(
@@ -47,7 +42,10 @@ fun RecipeTable.toEntity(): Recipe = Recipe(
     name = this.name,
     description = this.description,
     date = this.date,
-    comments = this.comments.toList().map { it.toEntity() },
+    comments = if (this.comments == null)
+        emptyList()
+    else
+        this.comments.toList().map { it.toEntity() },
     owner = this.owner.toEntity(),
     ingredients = listOf()
 )

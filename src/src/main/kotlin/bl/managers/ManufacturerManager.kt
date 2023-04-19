@@ -21,7 +21,7 @@ object ManufacturerManager : ICRUDManager<Manufacturer> {
     }
 
     override fun read(id: ULong): Manufacturer {
-        if (!isExist(id)) throw NotExistingUserException("Manufacturer not exists")
+        if (!isExist(id)) throw NotExistingUserException("Manufacturer with id = $id not exists")
 
         return repository.read(id)
     }

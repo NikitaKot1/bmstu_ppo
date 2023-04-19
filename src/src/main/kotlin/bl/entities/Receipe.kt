@@ -3,7 +3,7 @@ package bl.entities
 import java.time.LocalDateTime
 
 data class Recipe(
-    val id: ULong,
+    var id: ULong,
     var name: String,
     var description: String,
     var date: LocalDateTime,

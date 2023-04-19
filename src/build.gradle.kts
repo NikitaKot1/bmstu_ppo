@@ -9,6 +9,7 @@ plugins {
     application
     id("org.flywaydb.flyway") version "9.16.1"
     id("co.uzzu.dotenv.gradle") version "2.0.0"
+    //id("org.openjfx.javafxplugins") version "0.0.8"
 }
 
 group = "org.example"
@@ -17,6 +18,11 @@ version = "1.0-SNAPSHOT"
 repositories {
     mavenCentral()
 }
+
+//javafx {
+//    version = "11.0.2"
+//    modules = ['javafx.controls', 'javafx.graphics']
+//}
 
 dependencies {
     testImplementation(kotlin("test"))
@@ -32,6 +38,7 @@ dependencies {
     implementation("ch.qos.logback:logback-classic:1.4.6")
     implementation("org.slf4j:slf4j-nop:2.0.5")
     implementation("org.slf4j:slf4j-api:2.0.5")
+    //implementation("no.tornado:tornadofx:x.y.z")
 //    implementation("ch.qos.logback:logback-classic:1.2.9")
 //    implementation("ch.qos.logback:logback-core:1.2.9")
 }

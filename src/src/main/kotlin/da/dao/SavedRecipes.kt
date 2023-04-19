@@ -5,7 +5,7 @@ import org.jetbrains.exposed.dao.IntEntityClass
 import org.jetbrains.exposed.dao.id.EntityID
 import org.jetbrains.exposed.dao.id.IntIdTable
 
-object SavedRecipes : IntIdTable("saved_recipes") {
+object SavedRecipes : IntIdTable("added_to_like") {
     val user = reference("userid", Consumers)
     val recipe = reference("recipeid", Recipes)
 }

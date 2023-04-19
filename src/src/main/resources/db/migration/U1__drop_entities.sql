@@ -6,7 +6,7 @@ drop table if exists added_to_like cascade;
 
 drop table if exists ingredient_list cascade;
 
-drop table if exists recipe cascade;
+drop table if exists mark cascade;
 
 drop table if exists manufacturer cascade;
 

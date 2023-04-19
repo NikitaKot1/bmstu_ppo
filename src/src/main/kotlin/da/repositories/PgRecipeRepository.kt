@@ -31,7 +31,7 @@ class PgRecipeRepository : IRecipeRepository {
             RecipeTable.findById(id.toInt())
                 ?: throw NotFoundInDBException("Recipe with id = $id not found")
         }
-        val res = dao.toEntity()
+        val res = transaction { dao.toEntity() }
         return res
     }
 

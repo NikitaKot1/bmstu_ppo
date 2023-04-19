@@ -1,9 +1,11 @@
-insert into consumer (login, password)
-values ('login1', 'password1'),
-       ('login2', 'password2'),
-       ('login3', 'password3'),
-       ('login4', 'password4'),
-       ('login5', 'password5');
+-- truncate table consumer cascade;
+-- truncate table manufacturer cascade;
+-- truncate table mark cascade;
+-- truncate table comment cascade;
+-- truncate table ingredient cascade;
+-- truncate table added_to_like cascade;
+-- truncate table ingredient_list cascade;
+
 
 insert into manufacturer (login, password)
 values ('login1', 'password1'),
@@ -11,6 +13,14 @@ values ('login1', 'password1'),
        ('login3', 'password3'),
        ('login4', 'password4'),
        ('login5', 'password5');
+
+insert into consumer (login, password)
+values ('login1', 'password1'),
+       ('login2', 'password2'),
+       ('login3', 'password3'),
+       ('login4', 'password4'),
+       ('login5', 'password5');
+
 
 insert into mark (name, description, date, ownerid)
 VALUES ('name1', 'desc1', '2023-01-01', 1),
