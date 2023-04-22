@@ -5,35 +5,46 @@ import bl.entities.Manufacturer
 import da.exeption.NotFoundInDBException
 import da.repositories.factory.PgRepositoryFactory
 
-class TehnoUI {
+import tornadofx.*
+import javafx.beans.property.SimpleBooleanProperty
+import javafx.geometry.Pos
+import javafx.scene.control.ToggleGroup
+import ui.techno.TechnoView
+import javafx.scene.text.Font
+
+
+
+class TechnoUI : View("TehnoUI") {
     val facade = Facade(PgRepositoryFactory())
+    var otvrat = 0
     fun startInit() {
-        print("Say Hello!")
         val selMode = selectMode()
         val logAuth = menuMode()
-        if ((logAuth == 2u) and (selMode == 2u)) {
+        if ((logAuth == 2) and (selMode == 2)) {
             val manuf = authoriseManufacturer()
         }
     }
 
-    private fun selectMode(): UInt {
+    private fun selectMode(): Int {
         print("Consumer: 1\nManufacturer: 2\n")
         var end = true
-        var x = 0u
-        while (end) {
-            x = readln().toUInt()
-            end = (x == 1u) or (x == 2u)
+        var x = 0
+        while (end) {  
+            //x = input.nextLine().toInt()
+            //x = readln().toUInt()
+            end = (x == 1) or (x == 2)
         }
         return x
     }
 
-    private fun menuMode(): UInt {
+    private fun menuMode(): Int {
         print("LogIn: 1\nAuthorise: 2\n")
         var end = true
-        var x = 0u
+        var x = 0
         while (end) {
-            x = readln().toUInt()
-            end = (x == 1u) or (x == 2u)
+            //x = input.nextInt()
+            //x = readln().toUInt()
+            end = (x == 1) or (x == 2)
         }
         return x
     }
@@ -65,5 +76,28 @@ class TehnoUI {
                 end = false
         }
         return manuf
+    }
+
+    override val root = vbox {
+        spacing = 20.0
+        val lb = label { text = "Ну привет" }
+        textfield("") {
+            tooltip("Plase your code here") { font = Font.font("Verdana") }
+        }
+        button {
+            this.text = "Сказать 'Привет'"
+            action {
+                when (otvrat) {
+                    0 -> {
+                        lb.text = "Oof"
+                        this.text = "Commit"
+                        otvrat = 1
+                    }
+                    1 -> {
+                        lb.text = "Another"
+                    }
+                }
+            }
+        }
     }
 }

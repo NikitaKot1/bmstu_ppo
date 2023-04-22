@@ -9,13 +9,21 @@ plugins {
     application
     id("org.flywaydb.flyway") version "9.16.1"
     id("co.uzzu.dotenv.gradle") version "2.0.0"
-    //id("org.openjfx.javafxplugins") version "0.0.8"
+    id("org.openjfx.javafxplugin") version "0.0.8"
 }
 
+javafx {
+    version = "13"
+    modules = mutableListOf("javafx.controls", "javafx.fxml", "javafx.base", "javafx.media")
+}
+
+group = "no.tornado"
+//version = "1.7.20.1"
 group = "org.example"
 version = "1.0-SNAPSHOT"
 
 repositories {
+    jcenter()
     mavenCentral()
 }
 
@@ -38,7 +46,7 @@ dependencies {
     implementation("ch.qos.logback:logback-classic:1.4.6")
     implementation("org.slf4j:slf4j-nop:2.0.5")
     implementation("org.slf4j:slf4j-api:2.0.5")
-    //implementation("no.tornado:tornadofx:x.y.z")
+    implementation("no.tornado:tornadofx:1.7.20")
 //    implementation("ch.qos.logback:logback-classic:1.2.9")
 //    implementation("ch.qos.logback:logback-core:1.2.9")
 }

@@ -396,10 +396,10 @@ class ManufacturerAccountTest {
         val login = "Astolfo"
         val password = "hentai666"
 
-        var expected = Manufacturer(0u, login, password)
+        val expected = Manufacturer(0u, login, password)
         facade.registerManufacturer(login, password)
         var idd = 0
-        val act = transaction {
+        transaction {
             for (man in ManufacturerTable.all())
                 if (man.login == login)
                     idd = man.id.value
@@ -452,10 +452,10 @@ class ConsumerAccountTest {
         val login = "Astolfo"
         val password = "hentai666"
 
-        var expected = Consumer(0u, login, password)
+        val expected = Consumer(0u, login, password)
         facade.registerConsumer(login, password)
         var idd = 0
-        val act = transaction {
+        transaction {
             for (man in ConsumerTable.all())
                 if (man.login == login)
                     idd = man.id.value
